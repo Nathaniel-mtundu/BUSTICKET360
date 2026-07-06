@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Hero Section with Bus Image -->
+<div class="hero-section position-relative">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative z-2 py-5">
+        <div class="row align-items-center min-vh-50">
+            <div class="col-lg-6 text-white">
+                <h1 class="display-4 fw-bold mb-3">Travel Smart, Travel Far</h1>
+                <p class="lead mb-4">Book your bus tickets with ease. Find the best routes at the best prices.</p>
+            </div>
+            <div class="col-lg-6">
+                <!-- Search Card -->
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="text-center mb-4 fw-bold text-primary">
+                            <i class="bi bi-bus-front me-2"></i>Search Bus Route
+                        </h3>
+                        
+                        <form action="{% url 'search_buses' %}" method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- Origin -->
+                            <div class="mb-3">
+                                <label for="origin" class="form-label fw-semibold">
+                                    <i class="bi bi-geo-alt-fill text-primary me-1"></i>Origin
+                                </label>
+                                <input type="text" 
+                                       class="form-control form-control-lg" 
+                                       id="origin"
+                                       name="origin" 
+                                       placeholder="Enter departure city" 
+                                       required>
+                                <div class="invalid-feedback">Please enter your departure city.</div>
+                            </div>
+
+                            <!-- Destination -->
+                            <div class="mb-3">
+                                <label for="destination" class="form-label fw-semibold">
+                                    <i class="bi bi-geo-fill text-danger me-1"></i>Destination
+                                </label>
+                                <input type="text" 
+                                       class="form-control form-control-lg" 
+                                       id="destination"
+                                       name="destination" 
+                                       placeholder="Enter destination city" 
+                                       required>
+                                <div class="invalid-feedback">Please enter your destination city.</div>
+                            </div>
+
+                            <!-- Travel Date -->
+                            <div class="mb-4">
+                                <label for="travel_date" class="form-label fw-semibold">
+                                    <i class="bi bi-calendar-event text-success me-1"></i>Travel Date
+                                </label>
+                                <input type="date" 
+                                       class="form-control form-control-lg" 
+                                       id="travel_date"
+                                       name="travel_date" 
+                                       required>
+                                <div class="invalid-feedback">Please select a travel date.</div>
+                            </div>
+
+                            <!-- Search Button -->
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold shadow-sm">
+                                <i class="bi bi-search me-2"></i>Search Buses
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Buses Section -->
+<div class="container py-5">
+    <h2 class="text-center fw-bold mb-5">Our Fleet</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-card">
+                <img src="{% static 'images/bus1.png' %}" class="card-img-top p-3" alt="Luxury Bus" style="height: 200px; object-fit: contain;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">Luxury Coaches</h5>
+                    <p class="card-text text-muted">Premium comfort for long-distance travel with reclining seats and onboard amenities.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-card">
+                <img src="{% static 'images/bus2.png' %}" class="card-img-top p-3" alt="Standard Bus" style="height: 200px; object-fit: contain;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">Standard Service</h5>
+                    <p class="card-text text-muted">Reliable and affordable transportation for everyday commuters.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-card">
+                <img src="{% static 'images/bus3.png' %}" class="card-img-top p-3" alt="Tour Bus" style="height: 200px; object-fit: contain;">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">Tour Express</h5>
+                    <p class="card-text text-muted">Specialized routes for tourists with panoramic windows and guided stops.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <div class="feature-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <i class="bi bi-shield-check fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Safe Travel</h5>
+                <p class="text-muted small">Verified operators with top safety ratings</p>
+            </div>
+            <div class="col-md-3">
+                <div class="feature-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <i class="bi bi-ticket-perforated fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Easy Booking</h5>
+                <p class="text-muted small">Book tickets in under 2 minutes</p>
+            </div>
+            <div class="col-md-3">
+                <div class="feature-icon bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <i class="bi bi-currency-dollar fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Best Prices</h5>
+                <p class="text-muted small">Compare and find the cheapest fares</p>
+            </div>
+            <div class="col-md-3">
+                <div class="feature-icon bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <i class="bi bi-headset fs-4"></i>
+                </div>
+                <h5 class="fw-bold">24/7 Support</h5>
+                <p class="text-muted small">Round-the-clock customer assistance</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+{% comment %} {% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow p-4">
+                <h2 class="text-center mb-4">Search Bus Route</h2>
+
+                <form action="{% url 'search_buses' %}" method="post">
+                    {% csrf_token %}
+
+                   
+                    <div class="mb-3">
+                        <label for="" class="form-label">Origin</label>
+                        <input type="text" class="form-control" name="origin" placeholder="Enter departure city" required>
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="" class="form-label">Destination</label>
+                        <input type="text" class="form-control" name="destination" placeholder="Enter destination city" required>
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="" class="form-label">Travel date</label>
+                        <input type="date" class="form-control" name="travel_date" required>
+                    </div>
+
+                   
+                    <button class="btn btn-primary w-100">Search Buses</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %} {% endcomment %}

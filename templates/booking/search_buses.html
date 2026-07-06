@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Available Buses</h2>
+
+    <div class="row">
+        {% for schedule in schedules %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <!-- Bus Image -->
+                {% if schedule.bus.image %}
+                    <img src="{{ schedule.bus.image.url }}" 
+                         class="card-img-top" 
+                         alt="{{ schedule.bus.bus_name }}"
+                         class="card-img-top p-3" alt="Luxury Bus" style="height: 200px; object-fit: contain">
+                {% else %}
+                    <img src="{% static 'images/default-bus.png' %}" 
+                         class="card-img-top" 
+                         alt="Default Bus"
+                         style="height: 220px; object-fit: cover;">
+                {% endif %}
+                
+                <div class="card-body">
+                    <!-- Bus Name & Type -->
+                    <h4 class="card-title text-primary mb-3">
+                        {{ schedule.bus.bus_name }} 
+                        <span class="badge bg-secondary ms-2">{{ schedule.bus.bus_type }}</span>
+                    </h4>
+                    
+                    <!-- Route -->
+                    <p class="mb-2">
+                        <i class="bi bi-geo-alt text-danger me-2"></i>
+                        <strong>Route:</strong> {{ schedule.route }}
+                    </p>
+                    
+                    <!-- Travel Date -->
+                    <p class="mb-2">
+                        <i class="bi bi-calendar text-success me-2"></i>
+                        <strong>Travel Date:</strong> {{ schedule.travel_date }}
+                    </p>
+                    
+                    <!-- Arrival Time -->
+                    <p class="mb-2">
+                        <i class="bi bi-clock text-info me-2"></i>
+                        <strong>Arrival Time:</strong> {{ schedule.arrival_time }}
+                    </p>
+                    
+                    <!-- Price -->
+                    <p class="mb-3">
+                        {% comment %} <i class="bi bi-currency-dollar text-warning me-2"></i> {% endcomment %}
+                        <strong>Price: KE</strong> <span class="fw-bold text-success">{{ schedule.price }}</span>
+                    </p>
+                    
+                    <!-- Book Button -->
+                    <a href="{% url 'select_seat' schedule.id %}" class="btn btn-primary w-100">
+                        <i class="bi bi-ticket-perforated me-2"></i>Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <i class="bi bi-exclamation-triangle me-2"></i>No Bus Found
+            </div>
+            <a href="{% url 'home' %}" class="btn btn-success w-100 mt-3">
+                <i class="bi bi-house me-2"></i>Back To Home
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

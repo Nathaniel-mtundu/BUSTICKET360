@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Report{% endblock  %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h4>Booking Report</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Route</th>
+                            <th>Travel Date</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.customer.user.first_name }} {{ booking.customer.user.last_name }}</td>
+                            <td>{{ booking.schedule.route }}</td>
+                            <td>{{ booking.schedule.travel_date }}</td>
+                            {% if booking.booking_status == 'Confirmed' %}
+                            <td><span class="badge bg-success">{{ booking.booking_status }}</span></td>
+                            {% elif booking.booking_status == 'Pending' %}
+                            <td><span class="badge bg-warning">{{ booking.booking_status }}</span></td>
+                            {% elif booking.booking_status == 'Completed' %}
+                            <td><span class="badge bg-info">{{ booking.booking_status }}</span></td>
+                            {% else %}
+                            <td><span class="badge bg-danger">{{ booking.booking_status }}</span></td>
+                            {% endif %}
+
+                            {% if booking.payment.payment_status == 'Pending' %}
+                            <td><span class="badge bg-warning">{{ booking.payment.payment_status }}</span></td>
+                            {% elif booking.payment.payment_status == 'Paid' %}
+                            <td><span class="badge bg-success">{{ booking.payment.payment_status }}</span></td>
+                            {% else %}
+                            <td><span class="badge bg-danger">{{ booking.payment.payment_status }}</span></td>
+                            {% endif %}
+                            <td><div class="btn-group">
+                                <a href="" class="btn btn-primary btn-sm">View</a>
+                                <a  href="{% url 'cancel_booking' booking.id %}"class="btn btn-danger btn-sm">Cancel</a>
+                            </div></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

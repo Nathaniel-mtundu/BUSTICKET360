@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4>Payment</h4>
+<p>Customer: {{ booking.customer }}</p>
+<p>Route: {{ booking.schedule.route }}</p>
+<p>Seat: {{ booking.seat.seat_number }}</p>
+<p>Price: {{ booking.schedule.price }}</p>
+
+<a href="{% url 'initiate_payment' booking.id %}">Pay now</a>
+
+{% comment %} <form action="" method='post'>
+    {% csrf_token %}
+
+    <label for="">Select payment method: </label>
+    <select name="method" id="">
+        <option value="M-Pesa">M-Pesa</option>
+        <option value="Mixxed by yas">Mixxed by yas</option>
+        <option value="Airtel Money">Airtel Money</option>
+        <option value="HaloPesa">HaloPesa</option>
+    </select>
+
+    <button type="submit">Pay Now</button>
+</form>  {% endcomment %}
+{% endblock  %}

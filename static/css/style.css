@@ -1,0 +1,62 @@
+
+.bus-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.seat-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.seat{
+    width: 70px;
+    height: 70px;
+    background: #198754;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.seat:hover{
+    transform: scale(1.05);
+}
+
+.aisle{
+    width: 20%;
+}
+
+.bus-layout{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.seat-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seat-card{
+    width: 100px;
+}
+
+.seat-card .card-body{
+    padding: 10px;
+}
+
+.aisle{
+    width: 50px;
+}

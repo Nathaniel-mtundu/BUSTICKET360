@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h4>this is demo</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Route</th>
+                            <th>Travel Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2345</td>
+                            <td>Nathaniel</td>
+                            <td>Dar - Mwanza</td>
+                            <td>20-jun-2026</td>
+                            <td><span class="badge bg-success">Success</span></td>
+                            <td><div class="btn-group">
+                                <button class="btn btn-primary btn-sm">View</button>
+                                <button class="btn btn-danger btn-sm">Cancel</button>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

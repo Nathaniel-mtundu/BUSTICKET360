@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Hello, {{ booking.customer }}</h3>
+<p>you are making payment of {{ booking.schedule.price }} To {{ booking.seat.bus.company }}</p>
+<form action="" method ='post'>
+    {% csrf_token %}
+    <button type="submit" name="action" value="confirm">Confirm payment</button>
+    <button type="submit" name="action" value="cancel">Cancel</button>
+</form>
+{% endblock content %}

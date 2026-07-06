@@ -75,7 +75,7 @@ def book_seat(request, schedule_id, seat_id):
     
     return redirect('initialize_payment', booking_id=booking.id)
 
-
+#  describe  payments logics
 def initialize_payment(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     email = request.user.email

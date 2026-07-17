@@ -116,7 +116,7 @@ def initialize_payment(request, booking_id):
 @csrf_exempt
 def paystack_webhook(request):
     payload = request.body
-    signature = request.header.get('x-paystack-signature')
+    signature = request.headers.get('x-paystack-signature')
     computed_signature = hmac.new(settings.PAYSTACK_SECRET_KEY.encode(), payload, hashlib.sha512).hexdigest()
 
     # verify signature

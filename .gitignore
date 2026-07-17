@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+mtundu/
+venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Django
+db.sqlite3
+staticfiles/
+
+# Media (generated files)
+media/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

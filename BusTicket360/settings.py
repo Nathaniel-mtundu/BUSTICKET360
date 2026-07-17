@@ -1,3 +1,6 @@
+from pathlib import Path
+from decouple import config
+import dj_database_url
 """
 Django settings for BusTicket360 project.
 
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5g&rb2)axaskyj^md^$6nrv6(^j9_y0dt&z30&ahtd(y0sc!00'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default='127.0.0.1,localhost').split(',')
 
 
 # Application definition
@@ -81,14 +84,9 @@ WSGI_APPLICATION = 'BusTicket360.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'busticket360',
-        'USER': 'postgres',
-        'PASSWORD': 'Mtundu@9063',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -135,8 +133,8 @@ STATICFILES_DIRS =[
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-PAYSTACK_SECRET_KEY = 'sk_test_4b499466b1ed8a5c547142273aafdf3a9e06e860'
-PAYSTACK_PUBLIC_KEY = 'pk_test_14b1c69b56fccdad6761d9364bf0ded598d8e190'
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY')
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login/'

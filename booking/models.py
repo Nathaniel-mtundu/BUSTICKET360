@@ -110,7 +110,7 @@ class Ticket(models.Model):
     created_at                  = models.DateTimeField(auto_now_add=True)
 
     def generate_qr_code(self):
-        url = f"http://192.168.0.11:8000/tickets/verify_ticket/{self.ticket_number}/"
+        url = f"http://tickets/verify_ticket/{self.ticket_number}/"
 
         qr_img = qrcode.make(url)
 

@@ -152,3 +152,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+import os
+
+RENDER_CREATE_SUPERUSER = os.getenv("RENDER_CREATE_SUPERUSER", "False") == "True"
+SUPERUSER_USERNAME = os.getenv("SUPERUSER_USERNAME", "")
+SUPERUSER_EMAIL = os.getenv("SUPERUSER_EMAIL", "")
+SUPERUSER_PASSWORD = os.getenv("SUPERUSER_PASSWORD", "")

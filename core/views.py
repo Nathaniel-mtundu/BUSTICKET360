@@ -111,7 +111,7 @@ def initialize_payment(request, booking_id):
 
         return redirect(payment_url)
     else:
-        return HttpResponse("Payment initialization failed")
+        return HttpResponse(response_data)
     
 @csrf_exempt
 def paystack_webhook(request):
